@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Evan Thiant, monteur vidéo</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&amp;family=DM+Sans:wght@400;500;700&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#07090B}
+a{text-decoration:none}
+a:hover{opacity:.85}
+a:focus-visible{outline:3px solid #FFD23F;outline-offset:3px;border-radius:6px}
+.skip{position:absolute;left:-9999px;top:8px}
+.skip:focus{left:16px;z-index:20;background:#FFD23F;color:#1A1100;padding:10px 16px;border-radius:8px;font-weight:700}
+@keyframes ph{from{left:0}to{left:100%}}
+@keyframes wave{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+@keyframes mq{to{transform:translateX(-50%)}}
+@keyframes rec{50%{opacity:.15}}
+@keyframes prog{0%{width:0}80%,100%{width:100%}}
+.ph{animation:ph 9s linear infinite}
+.rec{animation:rec 1.2s steps(1) infinite}
+.mq{display:flex;width:max-content;animation:mq 34s linear infinite}
+.pg{animation:prog 4.5s ease-out infinite}
+.wf{display:flex;align-items:center;gap:3px;height:100%;width:100%}
+.wf span{flex:1;height:70%;background:currentColor;border-radius:2px;transform-origin:center;animation:wave 1.3s ease-in-out infinite}
+.wf span:nth-child(3n){height:95%;animation-delay:-.4s}
+.wf span:nth-child(3n+1){height:45%;animation-delay:-.8s}
+.wf span:nth-child(5n){height:80%;animation-delay:-.2s}
+.wf span:nth-child(7n){height:30%;animation-delay:-1s}
+.paused *{animation-play-state:paused !important}
+.row{transition:background .25s}
+.row:hover{background:#2A1A63}
+#pistes .row{border-bottom-color:#3A2A78!important}
+#pistes>div>div[style*="margin-top:56px"]{border-top-color:#3A2A78!important}
+#pistes span[style*="border:1px solid #2A3A3C"]{border-color:#6A55C8!important}
+.th:hover{opacity:1}
+.thi{transition:transform .6s}
+.th:hover .thi{transform:scale(1.05)}
+.vf::before,.vf::after{content:"";position:absolute;width:24px;height:24px;z-index:2;pointer-events:none}
+.vf::before{top:-9px;left:-9px;border-top:2px solid currentColor;border-left:2px solid currentColor}
+.vf::after{bottom:-9px;right:-9px;border-bottom:2px solid currentColor;border-right:2px solid currentColor}
+.btn:hover{opacity:1;transform:translateY(-2px)}
+.btn{transition:transform .2s}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes gl{0%,90%,100%{text-shadow:none;transform:none}91%{text-shadow:4px 0 #FF4D5E,-4px 0 #3DDCFF;transform:translateX(3px)}93%{text-shadow:-4px 0 #FF4D5E,4px 0 #3DDCFF;transform:translateX(-3px) skewX(-4deg)}95%{text-shadow:3px 0 #FF4D5E,-3px 0 #3DDCFF;transform:translateX(2px)}97%{text-shadow:none;transform:none}}
+@keyframes rv{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:none}}
+.spin{animation:spin 18s linear infinite}
+.gl{animation:gl 4s infinite}
+.mq2{animation-direction:reverse;animation-duration:48s}
+.th svg{transition:transform .3s}
+.th:hover svg{transform:scale(1.15) rotate(-8deg)}
+@supports (animation-timeline:view()){#apropos>div>div,#pistes .row,#projets>div>div[style*="display:flex"],#contact>div>*{animation:rv linear both;animation-timeline:view();animation-range:entry 0% entry 45%}}
+@media (max-width:900px){.bdg{display:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}.pg{width:100%}}
+</style>
+</helmet>
+
+<div class="{{rootClass}}" style="background:#07090B;color:#E8F3F3;font-family:'DM Sans',sans-serif;font-size:17px;line-height:1.6;width:100%;box-sizing:border-box;overflow:hidden">
+
+<a class="skip" href="#top">Aller au contenu</a>
+
+<!-- NAV -->
+<nav aria-label="Navigation principale" style="max-width:1200px;margin:0 auto;padding:28px 32px;box-sizing:border-box;display:flex;flex-wrap:wrap;gap:16px 32px;align-items:center;justify-content:space-between">
+<a href="#top" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:22px;color:#E8F3F3;letter-spacing:-0.01em;display:flex;align-items:center;gap:12px"><span class="rec" style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#FF4D5E"></span>Evan Thiant</a>
+<div style="display:flex;flex-wrap:wrap;gap:8px 28px;font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.06em;text-transform:uppercase">
+<a href="#apropos" style="color:#8FA3A6;padding:10px 0">À propos</a>
+<a href="#pistes" style="color:#8FA3A6;padding:10px 0">Pistes</a>
+<a href="#projets" style="color:#8FA3A6;padding:10px 0">Projets</a>
+<a href="#contact" style="color:#8FA3A6;padding:10px 0">Export</a>
+</div>
+</nav>
+
+<main>
+<!-- HERO -->
+<div id="top" style="max-width:1200px;margin:0 auto;padding:56px 32px 72px;box-sizing:border-box">
+<div style="display:inline-flex;align-items:center;gap:10px;font-family:'Space Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:{{accent}};border:1px solid #1B3A3D;padding:8px 14px;border-radius:999px"><span class="rec" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#FF4D5E"></span>Monteur vidéo · YouTube, Twitch &amp; formats courts</div>
+<span style="display:inline-block;transform:rotate(-4deg);margin-left:14px;background:#FF5C8A;color:#2A0A14;font-family:'Space Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.06em;padding:7px 14px;border-radius:8px">alias Yokai-Hunter</span>
+<h1 style="margin:32px 0 0;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(46px,9vw,112px);line-height:.95;letter-spacing:-0.04em">Je coupe,<br><span style="color:#FF5C8A">je rythme,</span><br><span class="gl" style="display:inline-block;color:{{accent}}">ils restent.</span></h1>
+<p style="margin:32px 0 0;max-width:600px;font-size:20px;color:#A9BCBE">Moi c'est Evan, alias Yokai-Hunter. Je transforme des rushs bruts en vidéos gaming et divertissement pour les streamers, les YouTubers et les entreprises : une accroche dès la première seconde, et un rythme qui tient jusqu'à la dernière.</p>
+<div style="margin-top:36px;display:flex;flex-wrap:wrap;gap:16px;align-items:center">
+<div class="bdg" aria-hidden="true" style="order:3;margin-left:auto;color:{{accent}};width:132px;height:132px;position:relative;flex:none">
+<svg class="spin" width="132" height="132" viewBox="0 0 160 160" style="position:absolute;top:0;left:0"><defs><path id="bdgc" d="M80,80 m-62,0 a62,62 0 1,1 124,0 a62,62 0 1,1 -124,0"></path></defs><text font-family="Space Mono, monospace" font-size="12" font-weight="700" fill="currentColor"><textPath href="#bdgc" textLength="385" lengthAdjust="spacing">MONTEUR VIDÉO • GAMING • YOUTUBE • </textPath></text></svg>
+<svg width="132" height="132" viewBox="0 0 160 160" style="position:absolute;top:0;left:0"><circle cx="80" cy="80" r="30" fill="currentColor"></circle><path d="M72 66 L96 80 L72 94 Z" fill="#041012"></path></svg>
+</div>
+<a class="btn" href="#projets" style="background:{{accent}};color:#041012;font-weight:700;font-size:16px;padding:16px 28px;border-radius:999px">Voir mes projets</a>
+<a class="btn" href="#contact" style="color:#E8F3F3;font-weight:700;font-size:16px;padding:15px 28px;border-radius:999px;border:1px solid #2A3A3C">Me contacter</a>
+</div>
+
+<!-- TIMELINE -->
+<div style="position:relative;margin-top:72px;border:1px solid #1B2A2C;border-radius:16px;background:#0A0F11;overflow:hidden;color:{{accent}};font-family:'Space Mono',monospace;font-size:11px">
+<div style="display:flex;height:30px;border-bottom:1px solid #1B2A2C;align-items:center">
+<div style="width:56px;flex:none;text-align:center;color:#8FA3A6">TC</div>
+<div style="flex:1;min-width:0;height:100%;display:flex;justify-content:space-between;align-items:center;padding:0 10px;color:#7C9094;background:repeating-linear-gradient(90deg,#1B2A2C 0 1px,transparent 1px 40px)"><span>00:00</span><span>00:15</span><span>00:30</span><span>00:45</span><span>01:00</span></div>
+</div>
+<div style="display:flex;height:48px;border-bottom:1px solid #14201F;align-items:stretch">
+<div style="width:56px;flex:none;display:flex;align-items:center;justify-content:center;color:#8FA3A6;border-right:1px solid #14201F">V2</div>
+<div style="flex:1;min-width:0;position:relative">
+<div style="position:absolute;top:8px;bottom:8px;left:2%;width:11%;background:#FFB02E;color:#1A1100;border-radius:6px;padding:0 8px;display:flex;align-items:center;font-weight:700;overflow:hidden;white-space:nowrap">TITRE</div>
+<div style="position:absolute;top:8px;bottom:8px;left:30%;width:22%;background:#FFB02E;color:#1A1100;border-radius:6px;padding:0 8px;display:flex;align-items:center;font-weight:700;overflow:hidden;white-space:nowrap">SOUS-TITRES</div>
+<div style="position:absolute;top:8px;bottom:8px;left:62%;width:12%;background:#FFB02E;color:#1A1100;border-radius:6px;padding:0 8px;display:flex;align-items:center;font-weight:700;overflow:hidden;white-space:nowrap">ZOOM</div>
+<div style="position:absolute;top:8px;bottom:8px;left:80%;width:14%;background:#FFB02E;color:#1A1100;border-radius:6px;padding:0 8px;display:flex;align-items:center;font-weight:700;overflow:hidden;white-space:nowrap">TEXTE</div>
+</div>
+</div>
+<div style="display:flex;height:56px;border-bottom:1px solid #14201F;align-items:stretch">
+<div style="width:56px;flex:none;display:flex;align-items:center;justify-content:center;color:#8FA3A6;border-right:1px solid #14201F">V1</div>
+<div style="flex:1;min-width:0;position:relative">
+<div style="position:absolute;top:8px;bottom:8px;left:0;width:14%;background:{{accent}};color:#041012;border-radius:6px;padding:0 8px;display:flex;align-items:center;font-weight:700;overflow:hidden;white-space:nowrap">HOOK</div>
+<div style="position:absolute;top:8px;bottom:8px;left:15%;width:30%;background:{{accent}};color:#041012;border-radius:6px;padding:0 8px;display:flex;align-items:center;font-weight:700;overflow:hidden;white-space:nowrap">FACECAM</div>
+<div style="position:absolute;top:8px;bottom:8px;left:46%;width:26%;background:{{accent}};color:#041012;border-radius:6px;padding:0 8px;display:flex;align-items:center;font-weight:700;overflow:hidden;white-space:nowrap">BEST-OF</div>
+<div style="position:absolute;top:8px;bottom:8px;left:73%;width:27%;background:{{accent}};color:#041012;border-radius:6px;padding:0 8px;display:flex;align-items:center;font-weight:700;overflow:hidden;white-space:nowrap">OUTRO</div>
+</div>
+</div>
+<div style="display:flex;height:64px;align-items:stretch">
+<div style="width:56px;flex:none;display:flex;align-items:center;justify-content:center;color:#8FA3A6;border-right:1px solid #14201F">A1</div>
+<div style="flex:1;min-width:0;padding:10px 6px;box-sizing:border-box;opacity:.85">
+<div class="wf" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+</div>
+</div>
+<div style="position:absolute;top:0;bottom:0;left:56px;right:0;pointer-events:none">
+<div class="ph" style="position:absolute;top:0;bottom:0;left:0;width:2px;background:#FF4D5E">
+<div style="position:absolute;top:0;left:-6px;width:14px;height:14px;background:#FF4D5E;border-radius:3px 3px 7px 7px"></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- BANDE DEFILANTE -->
+<div style="border-top:1px solid #14201F;border-bottom:1px solid #14201F;background:#FFD23F;color:#1A1100;overflow:hidden" aria-hidden="true">
+<div class="mq" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:28px;letter-spacing:-0.01em;text-transform:uppercase;white-space:nowrap;padding:14px 0">
+<span style="padding-right:36px">Dérushage / Rythme / Sound design / Sous-titres dynamiques / Format court / Format long / Accroche / </span>
+<span style="padding-right:36px">Dérushage / Rythme / Sound design / Sous-titres dynamiques / Format court / Format long / Accroche / </span>
+<span style="padding-right:36px">Dérushage / Rythme / Sound design / Sous-titres dynamiques / Format court / Format long / Accroche / </span>
+<span style="padding-right:36px">Dérushage / Rythme / Sound design / Sous-titres dynamiques / Format court / Format long / Accroche / </span>
+</div>
+</div>
+
+<!-- BANDE 2 -->
+<div style="border-bottom:1px solid #14201F;background:#07090B;overflow:hidden" aria-hidden="true">
+<div class="mq mq2" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:40px;letter-spacing:-0.01em;text-transform:uppercase;white-space:nowrap;padding:18px 0;color:transparent;-webkit-text-stroke:1.5px #3A5558">
+<span style="padding-right:36px">Evan Thiant / Yokai-Hunter / Monteur vidéo / Gaming / YouTube / Twitch / Shorts / Reels / TikTok / </span>
+<span style="padding-right:36px">Evan Thiant / Yokai-Hunter / Monteur vidéo / Gaming / YouTube / Twitch / Shorts / Reels / TikTok / </span>
+<span style="padding-right:36px">Evan Thiant / Yokai-Hunter / Monteur vidéo / Gaming / YouTube / Twitch / Shorts / Reels / TikTok / </span>
+<span style="padding-right:36px">Evan Thiant / Yokai-Hunter / Monteur vidéo / Gaming / YouTube / Twitch / Shorts / Reels / TikTok / </span>
+</div>
+</div>
+
+<!-- A PROPOS -->
+<div id="apropos">
+<div style="max-width:1200px;margin:0 auto;padding:104px 32px;box-sizing:border-box;display:flex;flex-wrap:wrap;gap:48px 80px">
+<div style="flex:1 1 320px;min-width:0">
+<div style="font-family:'Space Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:{{accent}}">[ 01 — À propos ]</div>
+<h2 style="margin:20px 0 0;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(34px,5vw,56px);line-height:1.02;letter-spacing:-0.03em">Né dans la culture web, <span style="color:transparent;-webkit-text-stroke:1.5px #E8F3F3">formé au montage.</span></h2>
+</div>
+<div style="flex:1 1 420px;min-width:0;font-size:19px;color:#A9BCBE">
+<p style="margin:0">Immergé depuis toujours dans le gaming et les univers YouTube et Twitch, je sais ce qui fait rester un spectateur : une vraie accroche, un rythme sans temps mort et un son qui accompagne chaque réaction.</p>
+<p style="margin:20px 0 0">Mon objectif est simple : transformer des rushs bruts en contenus dynamiques qui retiennent l'attention du début à la fin.</p>
+<p style="margin:20px 0 0">Principalement formé sur <strong style="color:#E8F3F3">DaVinci Resolve</strong>, je m'adapte vite aux exigences de chaque projet et à la vision des créateurs avec qui je travaille.</p>
+<div style="margin-top:36px;background:#FFD23F;color:#1A1100;border-radius:16px;padding:22px 26px;transform:rotate(-1.5deg);font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:22px;line-height:1.3">Mon kif : aider mes proches en montant leurs projets. Donner vie à l'idée de quelqu'un, c'est ma façon préférée de monter.</div>
+</div>
+</div>
+</div>
+
+<!-- PISTES -->
+<div id="pistes" style="border-top:1px solid #14201F;background:#1B1040">
+<div style="max-width:1200px;margin:0 auto;padding:104px 32px;box-sizing:border-box">
+<div style="font-family:'Space Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:{{accent}}">[ 02 — Pistes ]</div>
+<h2 style="margin:20px 0 0;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(34px,5vw,56px);line-height:1.02;letter-spacing:-0.03em;max-width:760px">Trois pistes, un seul objectif : te garder jusqu'au bout.</h2>
+<div style="margin-top:56px;border-top:1px solid #1B2A2C">
+<div class="row" style="display:flex;flex-wrap:wrap;gap:16px 32px;align-items:baseline;padding:32px 8px;border-bottom:1px solid #1B2A2C">
+<div style="width:72px;flex:none;font-family:'Space Mono',monospace;font-weight:700;font-size:15px;color:#041012;background:{{accent}};border-radius:8px;text-align:center;padding:6px 0">V1</div>
+<h3 style="flex:1 1 260px;margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:30px;letter-spacing:-0.02em">Fluidité narrative</h3>
+<p style="flex:2 1 320px;margin:0;color:#A9BCBE">Un dérushage efficace et un assemblage réfléchi pour garder une narration claire, sans temps mort.</p>
+</div>
+<div class="row" style="display:flex;flex-wrap:wrap;gap:16px 32px;align-items:baseline;padding:32px 8px;border-bottom:1px solid #1B2A2C">
+<div style="width:72px;flex:none;font-family:'Space Mono',monospace;font-weight:700;font-size:15px;color:#1A1100;background:#FFB02E;border-radius:8px;text-align:center;padding:6px 0">A1</div>
+<h3 style="flex:1 1 260px;margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:30px;letter-spacing:-0.02em">Rythme &amp; sound design</h3>
+<p style="flex:2 1 320px;margin:0;color:#A9BCBE">Un découpage percutant et un travail précis sur l'ambiance audio pour donner de l'impact à chaque séquence.</p>
+</div>
+<div class="row" style="display:flex;flex-wrap:wrap;gap:16px 32px;align-items:baseline;padding:32px 8px;border-bottom:1px solid #1B2A2C">
+<div style="width:72px;flex:none;font-family:'Space Mono',monospace;font-weight:700;font-size:15px;color:#2A0A10;background:#FF4D5E;border-radius:8px;text-align:center;padding:6px 0">FX</div>
+<h3 style="flex:1 1 260px;margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:30px;letter-spacing:-0.02em">Formats courts &amp; longs</h3>
+<p style="flex:2 1 320px;margin:0;color:#A9BCBE">À l'aise sur le format court vertical (Shorts, Reels, TikTok) comme sur le format long YouTube.</p>
+</div>
+</div>
+<div style="margin-top:32px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;font-family:'Space Mono',monospace;font-size:13px">
+<span style="color:#8FA3A6;margin-right:8px">OUTILS</span>
+<span style="border:1px solid #2A3A3C;border-radius:999px;padding:8px 16px">DaVinci Resolve</span>
+<span style="border:1px solid #2A3A3C;border-radius:999px;padding:8px 16px">Sous-titres dynamiques</span>
+<span style="border:1px solid #2A3A3C;border-radius:999px;padding:8px 16px">Sound design</span>
+<span style="border:1px solid #2A3A3C;border-radius:999px;padding:8px 16px">Recadrage vertical</span>
+</div>
+</div>
+</div>
+
+<!-- PROJETS -->
+<div id="projets" style="border-top:1px solid #14201F">
+<div style="max-width:1200px;margin:0 auto;padding:104px 32px;box-sizing:border-box">
+<div style="font-family:'Space Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:{{accent}}">[ 03 — Projets ]</div>
+<h2 style="margin:20px 0 0;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(34px,5vw,56px);line-height:1.02;letter-spacing:-0.03em;max-width:760px">Quatre clips, quatre formats.</h2>
+
+<!-- Projet 1 -->
+<div style="margin-top:72px;display:flex;flex-wrap:wrap;gap:40px 64px;align-items:center">
+<div style="flex:1 1 440px;min-width:0">
+<div class="vf" style="position:relative;color:{{accent}}">
+<a class="th" href="https://youtu.be/je24VK-K4a0" target="_blank" rel="noopener" style="position:relative;overflow:hidden;aspect-ratio:16/9;width:100%;border-radius:12px;background:#0A1214;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;box-sizing:border-box;padding:20px;color:#FFFFFF">
+<img class="thi" loading="lazy" src="./assets/7faf59fbb423923a9a1dd823872f9a8b.png" alt="Miniature de la vidéo Test de montage" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover">
+<div style="position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,rgba(7,9,11,0) 60%,rgba(7,9,11,.65))"></div>
+<span style="position:relative;display:inline-flex;align-items:center;gap:10px;background:rgba(7,9,11,.78);border:1px solid {{accent}};border-radius:999px;padding:10px 18px 10px 12px;font-size:15px;font-weight:700"><svg width="28" height="28" viewBox="0 0 64 64" role="img" aria-label="Lecture vidéo"><circle cx="32" cy="32" r="30" fill="{{accent}}"></circle><path d="M26 20 L46 32 L26 44 Z" fill="#041012"></path></svg>Regarder sur YouTube</span>
+</a>
+</div>
+</div>
+<div style="flex:1 1 360px;min-width:0">
+<div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:96px;line-height:.9;letter-spacing:-0.04em;color:transparent;-webkit-text-stroke:1.5px {{accent}}">01</div>
+<div style="margin-top:8px;font-family:'Space Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:{{accent}}">YouTube · Facecam / Divertissement</div>
+<h3 style="margin:12px 0 0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:34px;line-height:1.1;letter-spacing:-0.02em">Test de montage</h3>
+<p style="margin:16px 0 0;color:#A9BCBE">Un montage d'entraînement sur les rushs de Mastu, pour travailler mon rythme sur une vidéo facecam.</p>
+<p style="margin:16px 0 0;color:#A9BCBE"><strong style="color:#E8F3F3">Dérushage &amp; rythme :</strong> j'ai beaucoup coupé pour ne garder que les meilleurs moments et tenir un rythme sans temps mort.</p>
+<p style="margin:12px 0 0;color:#A9BCBE"><strong style="color:#E8F3F3">Sound design &amp; effets :</strong> choisir les bons bruitages a été le plus délicat. Je les ai placés, avec quelques zooms discrets, pour appuyer le comique et les réactions.</p>
+</div>
+</div>
+
+<!-- Projet 2 -->
+<div style="margin-top:112px;display:flex;flex-wrap:wrap;flex-direction:row-reverse;gap:40px 64px;align-items:center">
+<div style="flex:1 1 440px;min-width:0;display:flex;justify-content:center">
+<div class="vf" style="position:relative;width:100%;max-width:300px;color:{{accent}}">
+<a class="th" href="https://youtube.com/shorts/NrkW8z6n_jg?feature=share" target="_blank" rel="noopener" style="position:relative;overflow:hidden;aspect-ratio:9/16;width:100%;border-radius:12px;background:#0A1214;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;box-sizing:border-box;padding:16px;color:#FFFFFF">
+<img class="thi" loading="lazy" src="./assets/8526f6faa1de8de982342630093eb73a.png" alt="Miniature du short Clip Twitch gaming" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover">
+<div style="position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,rgba(7,9,11,0) 70%,rgba(7,9,11,.65))"></div>
+<span style="position:relative;display:inline-flex;align-items:center;gap:10px;background:rgba(7,9,11,.78);border:1px solid {{accent}};border-radius:999px;padding:8px 16px 8px 10px;font-size:14px;font-weight:700"><svg width="26" height="26" viewBox="0 0 64 64" role="img" aria-label="Lecture vidéo"><circle cx="32" cy="32" r="30" fill="{{accent}}"></circle><path d="M26 20 L46 32 L26 44 Z" fill="#041012"></path></svg>Regarder le short</span>
+</a>
+</div>
+</div>
+<div style="flex:1 1 360px;min-width:0">
+<div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:96px;line-height:.9;letter-spacing:-0.04em;color:transparent;-webkit-text-stroke:1.5px #FF5C8A">02</div>
+<div style="margin-top:8px;font-family:'Space Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:{{accent}}">TikTok · Reels · YouTube Short</div>
+<h3 style="margin:12px 0 0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:34px;line-height:1.1;letter-spacing:-0.02em">Clip Twitch gaming</h3>
+<p style="margin:16px 0 0;color:#A9BCBE">Un clip de stream monté pour les formats courts, construit autour de la réaction du streamer.</p>
+<p style="margin:16px 0 0;color:#A9BCBE"><strong style="color:#E8F3F3">Mise en page verticale :</strong> webcam en haut, jeu en bas, comme le veut le format des shorts. C'est la partie sur laquelle j'ai le plus travaillé : placer la webcam, le jeu et le texte sans surcharger l'image.</p>
+<p style="margin:12px 0 0;color:#A9BCBE"><strong style="color:#E8F3F3">Sous-titres dynamiques :</strong> animés mot par mot, avec un mot clé en jaune, pour qu'on comprenne le clip sans le son et qu'on ne décroche pas.</p>
+</div>
+</div>
+
+<!-- Projet 3 -->
+<div style="margin-top:112px;display:flex;flex-wrap:wrap;gap:40px 64px;align-items:center">
+<div style="flex:1 1 440px;min-width:0">
+<div class="vf" style="position:relative;color:{{accent}}">
+<a class="th" href="https://youtu.be/XA9hR9waP00" target="_blank" rel="noopener" style="position:relative;overflow:hidden;aspect-ratio:16/9;width:100%;border-radius:12px;background:#0A1214;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;box-sizing:border-box;padding:20px;color:#FFFFFF">
+<img class="thi" loading="lazy" src="./assets/3912ba586b6c2f75097db580ef8445e6.png" alt="Miniature de la vidéo Escape the Backrooms" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover">
+<div style="position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,rgba(7,9,11,0) 60%,rgba(7,9,11,.65))"></div>
+<span style="position:relative;display:inline-flex;align-items:center;gap:10px;background:rgba(7,9,11,.78);border:1px solid {{accent}};border-radius:999px;padding:10px 18px 10px 12px;font-size:15px;font-weight:700"><svg width="28" height="28" viewBox="0 0 64 64" role="img" aria-label="Lecture vidéo"><circle cx="32" cy="32" r="30" fill="{{accent}}"></circle><path d="M26 20 L46 32 L26 44 Z" fill="#041012"></path></svg>Regarder sur YouTube</span>
+</a>
+</div>
+</div>
+<div style="flex:1 1 360px;min-width:0">
+<div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:96px;line-height:.9;letter-spacing:-0.04em;color:transparent;-webkit-text-stroke:1.5px #FFD23F">03</div>
+<div style="margin-top:8px;font-family:'Space Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:{{accent}}">Projet perso · Gaming best-of</div>
+<h3 style="margin:12px 0 0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:34px;line-height:1.1;letter-spacing:-0.02em">Escape the Backrooms</h3>
+<p style="margin:16px 0 0;color:#A9BCBE">Une vidéo humoristique tirée d'une session de jeu entre amis. C'est celle où j'ai le plus ri en montant, et dont je suis très fier.</p>
+<p style="margin:16px 0 0;color:#A9BCBE"><strong style="color:#E8F3F3">Intro au beat :</strong> chaque coupe tombe sur un temps de la musique, avec des effets visuels calés sur le beat. C'est la partie que j'ai préféré faire.</p>
+<p style="margin:12px 0 0;color:#A9BCBE"><strong style="color:#E8F3F3">Dérushage :</strong> j'ai gardé les moments les plus drôles. La vidéo est signée d'un watermark audio avec mon pseudo.</p>
+<p style="margin:12px 0 0;color:#A9BCBE"><strong style="color:#E8F3F3">Le vrai défi :</strong> pas le montage, mais assumer mon travail et oser le publier.</p>
+</div>
+</div>
+
+<!-- Projet 4 -->
+<div style="margin-top:112px;display:flex;flex-wrap:wrap;flex-direction:row-reverse;gap:40px 64px;align-items:center">
+<div style="flex:1 1 440px;min-width:0">
+<div class="vf" style="position:relative;color:{{accent}}">
+<a class="th" href="https://youtu.be/nlSu44IEbks" target="_blank" rel="noopener" style="position:relative;overflow:hidden;aspect-ratio:16/9;width:100%;border-radius:12px;background:#0A1214;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;box-sizing:border-box;padding:20px;color:#FFFFFF">
+<img class="thi" loading="lazy" src="./assets/ad81a5c803152063697a719015f3befc.png" alt="Miniature de la vidéo Lethal Company" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover">
+<div style="position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,rgba(7,9,11,0) 60%,rgba(7,9,11,.65))"></div>
+<span style="position:relative;display:inline-flex;align-items:center;gap:10px;background:rgba(7,9,11,.78);border:1px solid {{accent}};border-radius:999px;padding:10px 18px 10px 12px;font-size:15px;font-weight:700"><svg width="28" height="28" viewBox="0 0 64 64" role="img" aria-label="Lecture vidéo"><circle cx="32" cy="32" r="30" fill="{{accent}}"></circle><path d="M26 20 L46 32 L26 44 Z" fill="#041012"></path></svg>Regarder sur YouTube</span>
+</a>
+</div>
+</div>
+<div style="flex:1 1 360px;min-width:0">
+<div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:96px;line-height:.9;letter-spacing:-0.04em;color:transparent;-webkit-text-stroke:1.5px #A78BFA">04</div>
+<div style="margin-top:8px;font-family:'Space Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:{{accent}}">Projet perso · Gaming best-of</div>
+<h3 style="margin:12px 0 0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:34px;line-height:1.1;letter-spacing:-0.02em">Lethal Company</h3>
+<p style="margin:16px 0 0;color:#A9BCBE">Un best-of construit comme une histoire, avec une chute qui surprend le spectateur. C'est un projet que j'ai énormément aimé : l'inspiration est venue à la seconde où j'ai vu mes rushs.</p>
+<p style="margin:16px 0 0;color:#A9BCBE"><strong style="color:#E8F3F3">Intro &amp; accroche :</strong> la vidéo démarre en pleine expédition, et l'intro se lance au moment précis où l'un de mes coéquipiers se fait tuer sous nos yeux. L'ambiance est posée dès la première seconde.</p>
+<p style="margin:12px 0 0;color:#A9BCBE"><strong style="color:#E8F3F3">Rupture narrative :</strong> l'équipe réussit à s'échapper d'un endroit, on est très contents, puis tout le monde meurt avant de valider la mission. Je change la musique pour une piste dramatique et j'ajoute une voix IA qui décrit la scène : le spectateur passe du soulagement au choc.</p>
+<p style="margin:12px 0 0;color:#A9BCBE"><strong style="color:#E8F3F3">Habillage &amp; son :</strong> des sous-titres qui apparaissent avec la voix, et des sons faits ou choisis sur mesure.</p>
+<p style="margin:12px 0 0;color:#A9BCBE"><strong style="color:#E8F3F3">Le plus dur :</strong> faire les bons choix de montage. Les retours de mes amis m'ont beaucoup aidé.</p>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- CONTACT / EXPORT -->
+<div id="contact" style="border-top:1px solid #14201F;background:#0A0F11">
+<div style="max-width:1200px;margin:0 auto;padding:120px 32px;box-sizing:border-box;text-align:center">
+<div style="font-family:'Space Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:{{accent}}">[ 04 — Export ]</div>
+<h2 style="margin:20px auto 0;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(42px,8vw,96px);line-height:.98;letter-spacing:-0.04em;max-width:900px">On lance <span style="color:transparent;-webkit-text-stroke:2px #E8F3F3">l'export</span> <span style="color:{{accent}}">?</span></h2>
+<div style="margin:40px auto 0;max-width:520px">
+<div style="height:8px;border-radius:999px;background:#14201F;overflow:hidden"><div class="pg" style="height:100%;width:0;background:{{accent}};border-radius:999px"></div></div>
+<div style="margin-top:12px;font-family:'Space Mono',monospace;font-size:12px;color:#8FA3A6;letter-spacing:.08em;text-transform:uppercase">Ton projet · prêt dès que tu l'es</div>
+</div>
+<p style="margin:32px auto 0;max-width:520px;color:#A9BCBE;font-size:19px">Dis-moi ce que tu veux raconter, je m'occupe du rythme, du son et de l'accroche.</p>
+<div style="margin-top:40px;display:flex;flex-wrap:wrap;gap:16px;justify-content:center">
+<a class="btn" href="mailto:thiantevanbts@gmail.com" style="background:{{accent}};color:#041012;font-weight:700;font-size:16px;padding:16px 28px;border-radius:999px">thiantevanbts@gmail.com</a>
+<a class="btn" href="https://www.linkedin.com/in/evan-thiant-9393203b6/" target="_blank" rel="noopener" style="color:#E8F3F3;font-weight:700;font-size:16px;padding:15px 28px;border-radius:999px;border:1px solid #2A3A3C">Mon LinkedIn</a>
+</div>
+</div>
+</div>
+
+</main>
+
+<!-- FOOTER -->
+<footer style="max-width:1200px;margin:0 auto;padding:32px;box-sizing:border-box;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#8FA3A6">
+<span>© 2026 Evan Thiant</span>
+<span>Fin de séquence · Merci d'être passé</span>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#00C4CC","options":["#00C4CC","#3DDC97","#FFB02E","#FF5C8A"]},"animate":{"editor":"boolean","default":true},"$preview":{"width":1360,"height":4300}}'>
+class Component extends DCLogic {
+renderVals() {
+const animate = this.props.animate ?? true;
+return { accent: this.props.accent ?? '#00C4CC', rootClass: animate ? '' : 'paused' };
+}
+}
+</script>
+</body>
+</html>
